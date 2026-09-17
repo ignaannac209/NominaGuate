@@ -3,10 +3,10 @@ package com.nominaguate.model;
 import java.math.BigDecimal;
 
 /**
- * STUB TEMPORAL. Reemplazar por la clase Empleado real del módulo
- * de Gestión de Empleados. El Servicio y el Controlador de Planilla
- * solo necesitan getIdEmpleado() y getSalarioActual().
+ * STUB TEMPORAL. Reemplazar por la clase Empleado real.
+ * Solo se necesitan getIdEmpleado() y getSalarioActual().
  */
+
 public class Empleado {
 
     private Integer idEmpleado;

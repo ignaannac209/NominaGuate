@@ -30,7 +30,6 @@ import java.util.Optional;
  */
 public class PlanillaRepository {
 
-    // ---------- Periodos ----------
 
     // Lista periodos filtrados por estado, para llenar el ComboBox
     public List<PeriodoPlanilla> listarPeriodosPorEstado(EstadoPeriodo estado) throws SQLException {
@@ -62,7 +61,6 @@ public class PlanillaRepository {
         );
     }
 
-    // ---------- Catálogo de conceptos ----------
 
     // Conceptos activos indexados por código, listos para el Servicio
     public Map<String, ConceptoNomina> listarConceptosActivos() throws SQLException {
@@ -89,7 +87,6 @@ public class PlanillaRepository {
         return conceptos;
     }
 
-    // ---------- Procesamiento transaccional de planilla ----------
 
     // Inserta cabecera, detalles, desglose de conceptos y boletas en un solo bloque atómico
     public PlanillaCabecera procesarPlanilla(PlanillaCabecera cabecera) throws SQLException {
@@ -206,7 +203,6 @@ public class PlanillaRepository {
         return "BOL-" + LocalDate.now().getYear() + "-" + idDetalle; // código simple y único
     }
 
-    // ---------- Anulación ----------
 
     // Revierte una planilla completa (cabecera, detalles y boletas)
     public void anularPlanilla(int idPlanilla) throws SQLException {
@@ -245,7 +241,6 @@ public class PlanillaRepository {
         }
     }
 
-    // ---------- Consulta consolidada de boletas (vista) ----------
 
     // Trae todas las boletas de una corrida, ya con JOINs resueltos en la vista
     public List<BoletaPagoVistaDTO> listarBoletasPorPlanilla(int idPlanilla) throws SQLException {

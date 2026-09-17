@@ -3,7 +3,7 @@ package com.nominaguate.model;
 import java.math.BigDecimal;
 
 /**
- * Línea de desglose: un concepto aplicado a un detalle de planilla.
+ * Línea de desglose.
  */
 public class PlanillaDetalleConcepto {
 

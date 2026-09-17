@@ -7,9 +7,7 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 
 /**
- * Punto de entrada. En el proyecto completo esta clase abriría primero
- * el login; aquí se deja apuntando directo a la vista de Planilla
- * para poder ejecutar y probar este módulo de forma aislada.
+ * Punto de entrada.
  */
 public class MainApp extends Application {
 

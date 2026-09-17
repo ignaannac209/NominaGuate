@@ -1,9 +1,8 @@
 package com.nominaguate.controller;
 
 /**
- * STUB TEMPORAL. Reemplazar por el mecanismo real de sesión del
- * módulo de Login. De momento devuelve un id de usuario fijo (1)
- * para poder compilar y probar este módulo de forma aislada.
+Por ahora, usa el usuario con ID 1 para
+poder probar este módulo por separado.
  */
 public class SesionActual {
 

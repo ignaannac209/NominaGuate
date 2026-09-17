@@ -5,8 +5,6 @@ import java.time.LocalDateTime;
 
 /**
  * Proyección de solo lectura de la vista vw_boletas_planilla.
- * Se usa para mostrar la boleta consolidada en pantalla, sin volver a
- * consultar empleados, puestos ni departamentos por separado.
  */
 public record BoletaPagoVistaDTO(
         Integer idBoleta,

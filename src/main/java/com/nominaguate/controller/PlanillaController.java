@@ -28,7 +28,6 @@ import java.util.Map;
 
 /**
  * Controlador de la vista de Procesamiento de Planilla.
- * Nota: Empleado y SesionActual son de módulos ya existentes en el proyecto.
  */
 public class PlanillaController {
 
@@ -154,7 +153,7 @@ public class PlanillaController {
         mostrarInfo("Boleta " + boleta.codigoBoleta() + " - Neto: Q " + boleta.salarioNeto());
     }
 
-    // ---------- Utilidades de UI ----------
+    // Utilidades de UI
 
     private void mostrarError(String mensaje, Exception e) {
         Alert alerta = new Alert(Alert.AlertType.ERROR);

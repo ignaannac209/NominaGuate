@@ -19,7 +19,6 @@ import java.util.Optional;
 
 /**
  * Reglas laborales de Guatemala para el cálculo de nómina.
- * Nota: Empleado es del módulo de Gestión de Empleados (ya existente).
  */
 public class PlanillaService {
 
@@ -44,7 +43,6 @@ public class PlanillaService {
         this.planillaRepository = planillaRepository;
     }
 
-    // ---------- Cálculos individuales ----------
 
     // Salario proporcional a los días realmente laborados
     public BigDecimal calcularSalarioOrdinario(BigDecimal salarioBase, BigDecimal diasLaborados,
@@ -105,7 +103,6 @@ public class PlanillaService {
         return tipoPeriodo == TipoPeriodo.MENSUAL ? DIAS_MES : DIAS_QUINCENA;
     }
 
-    // ---------- Cálculo consolidado por empleado ----------
 
     // Arma el detalle completo de un empleado dentro de la planilla
     public PlanillaDetalle calcularDetalleEmpleado(Empleado empleado, ResumenAsistenciaEmpleado resumen,
@@ -159,7 +156,6 @@ public class PlanillaService {
         detalle.agregarConcepto(new PlanillaDetalleConcepto(concepto.getIdConcepto(), codigo, monto));
     }
 
-    // ---------- Proceso masivo ----------
 
     // Calcula y persiste la planilla completa de un periodo
     public PlanillaCabecera procesarPlanilla(PeriodoPlanilla periodo, List<Empleado> empleados,
@@ -207,7 +203,6 @@ public class PlanillaService {
         planillaRepository.anularPlanilla(idPlanilla);
     }
 
-    // ---------- Consultas de apoyo para el controlador ----------
 
     public List<PeriodoPlanilla> listarPeriodosAbiertos() throws SQLException {
         return planillaRepository.listarPeriodosPorEstado(PeriodoPlanilla.EstadoPeriodo.ABIERTO);
