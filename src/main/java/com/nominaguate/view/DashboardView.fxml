@@ -10,50 +10,54 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.ColumnConstraints?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.nominaguate.controller.DashboardController">
+<BorderPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nominaguate.controller.DashboardController">
 
     <top>
         <VBox spacing="12">
             <padding>
-                <Insets top="12" right="12" bottom="0" left="12"/>
+                <Insets bottom="0" left="12" right="12" top="12" />
             </padding>
 
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <Label text="Dashboard Gerencial" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
-                <HBox HBox.hgrow="ALWAYS"/>
-                <Label text="Periodo:"/>
-                <ComboBox fx:id="cmbFiltroPeriodo" onAction="#onFiltrarPeriodo" prefWidth="220" promptText="Todos"/>
-                <Button text="Limpiar filtro" onAction="#onLimpiarFiltro"/>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Dashboard Gerencial" />
+                <HBox HBox.hgrow="ALWAYS" />
+                <Label text="Periodo:" />
+                <ComboBox fx:id="cmbFiltroPeriodo" onAction="#onFiltrarPeriodo" prefWidth="220" promptText="Todos" />
+                <Button onAction="#onLimpiarFiltro" text="Limpiar filtro" />
             </HBox>
+         <Button mnemonicParsing="false" onAction="#handleAbrirAsistencia" text="Control Asistencia" />
 
             <!-- Tarjetas de KPIs -->
-            <GridPane hgap="10" vgap="4" style="-fx-background-color: #f4f4f4; -fx-background-radius: 6; -fx-padding: 12;">
+            <GridPane hgap="10" style="-fx-background-color: #f4f4f4; -fx-background-radius: 6; -fx-padding: 12;" vgap="4">
                 <columnConstraints>
-                    <ColumnConstraints percentWidth="20"/>
-                    <ColumnConstraints percentWidth="20"/>
-                    <ColumnConstraints percentWidth="20"/>
-                    <ColumnConstraints percentWidth="20"/>
-                    <ColumnConstraints percentWidth="20"/>
+                    <ColumnConstraints percentWidth="20" />
+                    <ColumnConstraints percentWidth="20" />
+                    <ColumnConstraints percentWidth="20" />
+                    <ColumnConstraints percentWidth="20" />
+                    <ColumnConstraints percentWidth="20" />
                 </columnConstraints>
 
-                <Label text="Planillas" style="-fx-text-fill: gray;" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                <Label text="Total devengado" style="-fx-text-fill: gray;" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-                <Label text="Total descuentos" style="-fx-text-fill: gray;" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-                <Label text="Total neto" style="-fx-text-fill: gray;" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
-                <Label text="Promedio neto" style="-fx-text-fill: gray;" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
+                <Label style="-fx-text-fill: gray;" text="Planillas" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label style="-fx-text-fill: gray;" text="Total devengado" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Label style="-fx-text-fill: gray;" text="Total descuentos" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                <Label style="-fx-text-fill: gray;" text="Total neto" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                <Label style="-fx-text-fill: gray;" text="Promedio neto" GridPane.columnIndex="4" GridPane.rowIndex="0" />
 
-                <Label fx:id="lblTotalPlanillas" text="0" style="-fx-font-size: 18px; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                <Label fx:id="lblTotalDevengado" text="Q 0.00" style="-fx-font-size: 18px; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                <Label fx:id="lblTotalDescuentos" text="Q 0.00" style="-fx-font-size: 18px; -fx-font-weight: bold;" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-                <Label fx:id="lblTotalNeto" text="Q 0.00" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2e7d32;" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
-                <Label fx:id="lblPromedioNeto" text="Q 0.00" style="-fx-font-size: 18px; -fx-font-weight: bold;" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+                <Label fx:id="lblTotalPlanillas" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Label fx:id="lblTotalDevengado" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Q 0.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label fx:id="lblTotalDescuentos" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Q 0.00" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <Label fx:id="lblTotalNeto" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2e7d32;" text="Q 0.00" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <Label fx:id="lblPromedioNeto" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Q 0.00" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
             </GridPane>
         </VBox>
     </top>
@@ -61,28 +65,28 @@
     <center>
         <VBox spacing="12">
             <padding>
-                <Insets top="12" right="12" bottom="12" left="12"/>
+                <Insets bottom="12" left="12" right="12" top="12" />
             </padding>
 
-            <BarChart fx:id="chartPorDepartamento" title="Total neto pagado por departamento" prefHeight="260" legendVisible="false">
+            <BarChart fx:id="chartPorDepartamento" legendVisible="false" prefHeight="260" title="Total neto pagado por departamento">
                 <xAxis>
-                    <CategoryAxis label="Departamento"/>
+                    <CategoryAxis label="Departamento" />
                 </xAxis>
                 <yAxis>
-                    <NumberAxis label="Monto (Q)"/>
+                    <NumberAxis label="Monto (Q)" />
                 </yAxis>
             </BarChart>
 
-            <Label text="Planillas generadas" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+            <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Planillas generadas" />
 
             <TableView fx:id="tblPlanillas" VBox.vgrow="ALWAYS">
                 <columns>
-                    <TableColumn fx:id="colIdPlanilla" text="ID" prefWidth="60"/>
-                    <TableColumn fx:id="colPeriodo" text="Periodo" prefWidth="160"/>
-                    <TableColumn fx:id="colFecha" text="Fecha generación" prefWidth="140"/>
-                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="100"/>
-                    <TableColumn fx:id="colCantidadEmpleados" text="Empleados" prefWidth="90"/>
-                    <TableColumn fx:id="colTotalNeto" text="Total Neto" prefWidth="120"/>
+                    <TableColumn fx:id="colIdPlanilla" prefWidth="60" text="ID" />
+                    <TableColumn fx:id="colPeriodo" prefWidth="160" text="Periodo" />
+                    <TableColumn fx:id="colFecha" prefWidth="140" text="Fecha generación" />
+                    <TableColumn fx:id="colEstado" prefWidth="100" text="Estado" />
+                    <TableColumn fx:id="colCantidadEmpleados" prefWidth="90" text="Empleados" />
+                    <TableColumn fx:id="colTotalNeto" prefWidth="120" text="Total Neto" />
                 </columns>
             </TableView>
         </VBox>
