@@ -1,5 +1,17 @@
 package com.nominaguate.controller;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+/**
+Por ahora, usa el usuario con ID 1 para
+poder probar este módulo por separado.
+ */
+public class SesionActual {
+
+    private static Integer idUsuario = 1;
+=======
+>>>>>>> origin/main
 import com.nominaguate.model.RolUsuario;
 import com.nominaguate.model.Usuario;
 
@@ -14,10 +26,25 @@ import com.nominaguate.model.Usuario;
 public final class SesionActual {
 
     private static Usuario usuarioActual;
+<<<<<<< HEAD
+=======
+>>>>>>> feature/implementacion-login
+>>>>>>> origin/main
 
     private SesionActual() {
     }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    public static Integer getIdUsuario() {
+        return idUsuario;
+    }
+
+    public static void setIdUsuario(Integer id) {
+        idUsuario = id;
+=======
+>>>>>>> origin/main
     // Llamado por LoginController justo después de autenticar con éxito
     public static void iniciarSesion(Usuario usuario) {
         usuarioActual = usuario;
@@ -51,5 +78,9 @@ public final class SesionActual {
     // Atajo para que los controladores decidan qué mostrar/habilitar según el rol
     public static boolean tieneRol(RolUsuario rol) {
         return usuarioActual != null && usuarioActual.getRol() == rol;
+<<<<<<< HEAD
+=======
+>>>>>>> feature/implementacion-login
+>>>>>>> origin/main
     }
 }
