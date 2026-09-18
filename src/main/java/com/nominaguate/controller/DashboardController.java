@@ -10,6 +10,10 @@ import com.nominaguate.service.DashboardService;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
@@ -18,7 +22,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
@@ -58,8 +64,7 @@ public class DashboardController {
 
     @FXML
     public void initialize() {
-        // Solo ADMIN y RRHH deberían llegar aquí; el login ya enruta según rol,
-        // pero se valida de nuevo por si el controlador se invoca desde otro lugar.
+        // Solo ADMIN y RRHH deberían llegar aquí; el login ya enruta según rol
         if (SesionActual.haySesionActiva() && SesionActual.getUsuarioActual().esEmpleado()) {
             mostrarError("No tienes permisos para ver el Dashboard Gerencial.");
             return;
@@ -70,6 +75,19 @@ public class DashboardController {
         cargarDatos(null); // sin filtro: vista consolidada de todos los periodos
     }
 
+    @FXML
+    private void handleAbrirAsistencia(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/nominaguate/view/AsistenciaView.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root, 1000, 650));
+            stage.setTitle("NominaGuate - Control de Asistencia");
+            stage.centerOnScreen();
+        } catch (IOException e) {
+            mostrarError("No se pudo abrir la vista de Control de Asistencia: " + e.getMessage());
+        }
+    }
+
     private void configurarColumnasTabla() {
         colIdPlanilla.setCellValueFactory(new PropertyValueFactory<>("idPlanilla"));
         colPeriodo.setCellValueFactory(new PropertyValueFactory<>("nombrePeriodo"));
@@ -77,7 +95,6 @@ public class DashboardController {
         colCantidadEmpleados.setCellValueFactory(new PropertyValueFactory<>("cantidadEmpleados"));
         colTotalNeto.setCellValueFactory(new PropertyValueFactory<>("totalNeto"));
 
-        // La fecha necesita formato propio, no viene lista desde el DTO
         colFecha.setCellValueFactory(datos -> {
             var fecha = datos.getValue().fechaGeneracion();
             String texto = fecha != null ? fecha.format(FORMATO_FECHA) : "";
@@ -94,7 +111,6 @@ public class DashboardController {
         }
     }
 
-    // Se dispara al elegir un periodo en el filtro; null = "Todos"
     @FXML
     private void onFiltrarPeriodo(ActionEvent event) {
         PeriodoFiltroDTO seleccion = cmbFiltroPeriodo.getValue();
