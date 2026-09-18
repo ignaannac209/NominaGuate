@@ -2,38 +2,25 @@ package com.nominaguate;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- * Punto de entrada.
-<<<<<<< HEAD
-=======
- *
- * La aplicacion ahora arranca en la pantalla de Login. Tras autenticar,
- * LoginController reemplaza la Scene de este mismo Stage segun el rol:
- * ADMIN/RRHH -> DashboardView, EMPLEADO -> PlanillaView.
->>>>>>> feature/implementacion-login
- */
 public class MainApp extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent raiz = FXMLLoader.load(
-<<<<<<< HEAD
-                getClass().getResource("/com/nominaguate/view/PlanillaView.fxml"));
+    public void start(Stage primaryStage) throws Exception {
+        // 1. Cargar el FXML de la vista inicial (ej. Login)
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/nominaguate/view/LoginView.fxml"));
+        Parent root = loader.load();
 
-        stage.setTitle("NominaGuate - Procesamiento de Planilla");
-        stage.setScene(new Scene(raiz, 900, 550));
-=======
-                getClass().getResource("/com/nominaguate/view/LoginView.fxml"));
+        // 2. Crear UNA SOLA escena con el root cargado
+        Scene scene = new Scene(root);
 
-        stage.setTitle("NominaGuate - Inicio de Sesion");
-        stage.setScene(new Scene(raiz, 420, 460));
-        stage.centerOnScreen();
->>>>>>> feature/implementacion-login
-        stage.show();
+        // 3. Asignar y mostrar el escenario
+        primaryStage.setTitle("NominaGuate - Sistema de Nómina");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {

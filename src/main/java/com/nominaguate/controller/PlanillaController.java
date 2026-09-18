@@ -1,10 +1,10 @@
 package com.nominaguate.controller;
 
+import com.nominaguate.dto.BoletaPagoVistaDTO;
 import com.nominaguate.model.Empleado;
 import com.nominaguate.model.PeriodoPlanilla;
 import com.nominaguate.model.PlanillaCabecera;
 import com.nominaguate.model.PlanillaDetalle;
-import com.nominaguate.dto.BoletaPagoVistaDTO;
 import com.nominaguate.repository.PlanillaRepository;
 import com.nominaguate.service.PlanillaService;
 import com.nominaguate.service.ResumenAsistenciaEmpleado;
@@ -138,7 +138,7 @@ public class PlanillaController {
                     planillaService.obtenerBoletasDePlanilla(seleccion.getIdPlanilla());
 
             boletas.stream()
-                    .filter(b -> b.idEmpleado().equals(seleccion.getIdEmpleado()))
+                    .filter(b -> Integer.valueOf(b.idEmpleado()).equals(seleccion.getIdEmpleado()))
                     .findFirst()
                     .ifPresentOrElse(this::abrirVentanaBoleta,
                             () -> mostrarAdvertencia("Boleta no encontrada."));

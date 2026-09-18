@@ -1,5 +1,6 @@
 package com.nominaguate.service;
 
+import com.nominaguate.dto.BoletaPagoVistaDTO;
 import com.nominaguate.model.ConceptoNomina;
 import com.nominaguate.model.Empleado;
 import com.nominaguate.model.PeriodoPlanilla;
@@ -7,7 +8,6 @@ import com.nominaguate.model.PeriodoPlanilla.TipoPeriodo;
 import com.nominaguate.model.PlanillaCabecera;
 import com.nominaguate.model.PlanillaDetalle;
 import com.nominaguate.model.PlanillaDetalleConcepto;
-import com.nominaguate.dto.BoletaPagoVistaDTO;
 import com.nominaguate.repository.PlanillaRepository;
 
 import java.math.BigDecimal;
@@ -42,7 +42,6 @@ public class PlanillaService {
     public PlanillaService(PlanillaRepository planillaRepository) {
         this.planillaRepository = planillaRepository;
     }
-
 
     // Salario proporcional a los días realmente laborados
     public BigDecimal calcularSalarioOrdinario(BigDecimal salarioBase, BigDecimal diasLaborados,
@@ -103,7 +102,6 @@ public class PlanillaService {
         return tipoPeriodo == TipoPeriodo.MENSUAL ? DIAS_MES : DIAS_QUINCENA;
     }
 
-
     // Arma el detalle completo de un empleado dentro de la planilla
     public PlanillaDetalle calcularDetalleEmpleado(Empleado empleado, ResumenAsistenciaEmpleado resumen,
                                                     TipoPeriodo tipoPeriodo,
@@ -156,7 +154,6 @@ public class PlanillaService {
         detalle.agregarConcepto(new PlanillaDetalleConcepto(concepto.getIdConcepto(), codigo, monto));
     }
 
-
     // Calcula y persiste la planilla completa de un periodo
     public PlanillaCabecera procesarPlanilla(PeriodoPlanilla periodo, List<Empleado> empleados,
                                               Map<Integer, ResumenAsistenciaEmpleado> resumenAsistencia,
@@ -202,7 +199,6 @@ public class PlanillaService {
     public void anularPlanilla(int idPlanilla) throws SQLException {
         planillaRepository.anularPlanilla(idPlanilla);
     }
-
 
     public List<PeriodoPlanilla> listarPeriodosAbiertos() throws SQLException {
         return planillaRepository.listarPeriodosPorEstado(PeriodoPlanilla.EstadoPeriodo.ABIERTO);
