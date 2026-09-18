@@ -6,13 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 
-/**
- * Punto de entrada.
- *
- * La aplicacion ahora arranca en la pantalla de Login. Tras autenticar,
- * LoginController reemplaza la Scene de este mismo Stage segun el rol:
- * ADMIN/RRHH -> DashboardView, EMPLEADO -> PlanillaView.
- */
+
 public class MainApp extends Application {
 
     @Override
