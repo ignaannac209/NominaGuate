@@ -1,6 +1,11 @@
 package com.nominaguate.repository;
 
+<<<<<<< HEAD
 import com.nominaguate.config.ConexionBD;
+=======
+import com.nominaguate.config.DataBaseConnection;
+import com.nominaguate.dto.BoletaPagoVistaDTO;
+>>>>>>> feature/implementacion-login
 import com.nominaguate.model.ConceptoNomina;
 import com.nominaguate.model.ConceptoNomina.NaturalezaConcepto;
 import com.nominaguate.model.ConceptoNomina.TipoConcepto;
@@ -10,7 +15,10 @@ import com.nominaguate.model.PeriodoPlanilla.TipoPeriodo;
 import com.nominaguate.model.PlanillaCabecera;
 import com.nominaguate.model.PlanillaDetalle;
 import com.nominaguate.model.PlanillaDetalleConcepto;
+<<<<<<< HEAD
 import com.nominaguate.dto.BoletaPagoVistaDTO;
+=======
+>>>>>>> feature/implementacion-login
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -30,14 +38,21 @@ import java.util.Optional;
  */
 public class PlanillaRepository {
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/implementacion-login
     // Lista periodos filtrados por estado, para llenar el ComboBox
     public List<PeriodoPlanilla> listarPeriodosPorEstado(EstadoPeriodo estado) throws SQLException {
         String sql = "SELECT id_periodo, nombre_periodo, fecha_inicio, fecha_fin, tipo_periodo, estado " +
                 "FROM periodos_planilla WHERE estado = ? ORDER BY fecha_inicio DESC";
         List<PeriodoPlanilla> periodos = new ArrayList<>();
 
+<<<<<<< HEAD
         try (Connection con = ConexionBD.obtenerConexion();
+=======
+        try (Connection con = DataBaseConnection.getConnectionDataBase();
+>>>>>>> feature/implementacion-login
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, estado.name());
@@ -61,14 +76,21 @@ public class PlanillaRepository {
         );
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/implementacion-login
     // Conceptos activos indexados por código, listos para el Servicio
     public Map<String, ConceptoNomina> listarConceptosActivos() throws SQLException {
         String sql = "SELECT id_concepto, codigo_concepto, nombre_concepto, tipo_concepto, " +
                 "naturaleza, porcentaje, estado FROM conceptos_nomina WHERE estado = 'ACTIVO'";
         Map<String, ConceptoNomina> conceptos = new HashMap<>();
 
+<<<<<<< HEAD
         try (Connection con = ConexionBD.obtenerConexion();
+=======
+        try (Connection con = DataBaseConnection.getConnectionDataBase();
+>>>>>>> feature/implementacion-login
              Statement st = con.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
 
@@ -87,7 +109,10 @@ public class PlanillaRepository {
         return conceptos;
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/implementacion-login
     // Inserta cabecera, detalles, desglose de conceptos y boletas en un solo bloque atómico
     public PlanillaCabecera procesarPlanilla(PlanillaCabecera cabecera) throws SQLException {
         String sqlCabecera = "INSERT INTO planilla_cabecera " +
@@ -102,6 +127,7 @@ public class PlanillaRepository {
                 "VALUES (?, ?, ?)";
         String sqlBoleta = "INSERT INTO boletas_pago (id_detalle, codigo_boleta, estado) VALUES (?, ?, 'EMITIDA')";
 
+<<<<<<< HEAD
         Connection con = null;
         try {
             con = ConexionBD.obtenerConexion();
@@ -129,6 +155,31 @@ public class PlanillaRepository {
             if (con != null) {
                 con.setAutoCommit(true);
                 con.close();
+=======
+        try (Connection con = DataBaseConnection.getConnectionDataBase()) {
+            con.setAutoCommit(false); // inicio de transacción
+
+            try {
+                int idPlanilla = insertarCabecera(con, sqlCabecera, cabecera);
+                cabecera.setIdPlanilla(idPlanilla);
+
+                for (PlanillaDetalle detalle : cabecera.getDetalles()) {
+                    detalle.setIdPlanilla(idPlanilla);
+                    int idDetalle = insertarDetalle(con, sqlDetalle, detalle);
+                    detalle.setIdDetalle(idDetalle);
+
+                    insertarConceptos(con, sqlConcepto, idDetalle, detalle.getConceptos());
+                    insertarBoleta(con, sqlBoleta, idDetalle);
+                }
+
+                con.commit(); // todo o nada
+                return cabecera;
+            } catch (SQLException e) {
+                con.rollback(); // deshace todo ante cualquier fallo
+                throw e;
+            } finally {
+                con.setAutoCommit(true);
+>>>>>>> feature/implementacion-login
             }
         }
     }
@@ -178,7 +229,11 @@ public class PlanillaRepository {
 
     private void insertarConceptos(Connection con, String sql, int idDetalle,
                                     List<PlanillaDetalleConcepto> conceptos) throws SQLException {
+<<<<<<< HEAD
         if (conceptos.isEmpty()) return;
+=======
+        if (conceptos == null || conceptos.isEmpty()) return;
+>>>>>>> feature/implementacion-login
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             for (PlanillaDetalleConcepto concepto : conceptos) {
@@ -200,10 +255,16 @@ public class PlanillaRepository {
     }
 
     private String generarCodigoBoleta(int idDetalle) {
+<<<<<<< HEAD
         return "BOL-" + LocalDate.now().getYear() + "-" + idDetalle; // código simple y único
     }
 
 
+=======
+        return "BOL-" + LocalDate.now().getYear() + "-" + idDetalle;
+    }
+
+>>>>>>> feature/implementacion-login
     // Revierte una planilla completa (cabecera, detalles y boletas)
     public void anularPlanilla(int idPlanilla) throws SQLException {
         String sqlBoleta = "UPDATE boletas_pago b JOIN planilla_detalle d ON d.id_detalle = b.id_detalle " +
@@ -211,6 +272,7 @@ public class PlanillaRepository {
         String sqlDetalle = "UPDATE planilla_detalle SET estado = 'ANULADO' WHERE id_planilla = ?";
         String sqlCabecera = "UPDATE planilla_cabecera SET estado = 'ANULADA' WHERE id_planilla = ?";
 
+<<<<<<< HEAD
         Connection con = null;
         try {
             con = ConexionBD.obtenerConexion();
@@ -237,17 +299,49 @@ public class PlanillaRepository {
             if (con != null) {
                 con.setAutoCommit(true);
                 con.close();
+=======
+        try (Connection con = DataBaseConnection.getConnectionDataBase()) {
+            con.setAutoCommit(false);
+
+            try {
+                try (PreparedStatement ps = con.prepareStatement(sqlBoleta)) {
+                    ps.setInt(1, idPlanilla);
+                    ps.executeUpdate();
+                }
+                try (PreparedStatement ps = con.prepareStatement(sqlDetalle)) {
+                    ps.setInt(1, idPlanilla);
+                    ps.executeUpdate();
+                }
+                try (PreparedStatement ps = con.prepareStatement(sqlCabecera)) {
+                    ps.setInt(1, idPlanilla);
+                    ps.executeUpdate();
+                }
+
+                con.commit();
+            } catch (SQLException e) {
+                con.rollback();
+                throw e;
+            } finally {
+                con.setAutoCommit(true);
+>>>>>>> feature/implementacion-login
             }
         }
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/implementacion-login
     // Trae todas las boletas de una corrida, ya con JOINs resueltos en la vista
     public List<BoletaPagoVistaDTO> listarBoletasPorPlanilla(int idPlanilla) throws SQLException {
         String sql = "SELECT * FROM vw_boletas_planilla WHERE id_planilla = ? ORDER BY empleado";
         List<BoletaPagoVistaDTO> boletas = new ArrayList<>();
 
+<<<<<<< HEAD
         try (Connection con = ConexionBD.obtenerConexion();
+=======
+        try (Connection con = DataBaseConnection.getConnectionDataBase();
+>>>>>>> feature/implementacion-login
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, idPlanilla);
@@ -264,7 +358,11 @@ public class PlanillaRepository {
     public Optional<BoletaPagoVistaDTO> obtenerBoletaPorId(int idBoleta) throws SQLException {
         String sql = "SELECT * FROM vw_boletas_planilla WHERE id_boleta = ?";
 
+<<<<<<< HEAD
         try (Connection con = ConexionBD.obtenerConexion();
+=======
+        try (Connection con = DataBaseConnection.getConnectionDataBase();
+>>>>>>> feature/implementacion-login
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, idBoleta);
@@ -304,4 +402,8 @@ public class PlanillaRepository {
                 rs.getString("desglose_conceptos")
         );
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> feature/implementacion-login
