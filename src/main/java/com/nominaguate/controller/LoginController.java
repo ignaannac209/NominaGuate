@@ -86,10 +86,10 @@ public class LoginController {
 
     // Enruta a la ventana correspondiente según el rol del usuario autenticado
     private void abrirVentanaPrincipal(Usuario usuario) throws IOException {
-        String vista = (usuario.getRol() == RolUsuario.ADMIN || usuario.getRol() == RolUsuario.RRHH)
-                ? "/com/nominaguate/view/DashboardView.fxml"
-                : "/com/nominaguate/view/PlanillaView.fxml"; // TODO: vista propia para EMPLEADO (ver sus boletas)
-
+              String vista = (usuario.getRol() == RolUsuario.ADMIN || usuario.getRol() == RolUsuario.RRHH)
+                ? "/view/DashboardView.fxml"
+                : "/view/PlanillaView.fxml"; // TODO: vista propia para EMPLEADO
+              
         Parent raiz = FXMLLoader.load(getClass().getResource(vista));
 
         Stage escenarioActual = (Stage) btnIngresar.getScene().getWindow();
@@ -107,8 +107,8 @@ public class LoginController {
     @FXML
     private void onIrARegistro(ActionEvent event) {
         try {
-            Parent raiz = FXMLLoader.load(getClass().getResource("/com/nominaguate/view/RegistroView.fxml"));
-            Stage escenarioActual = (Stage) btnIngresar.getScene().getWindow();
+                               Parent raiz = FXMLLoader.load(getClass().getResource("/view/RegistroView.fxml"));
+                               Stage escenarioActual = (Stage) btnIngresar.getScene().getWindow();
             escenarioActual.setScene(new Scene(raiz, 420, 560));
             escenarioActual.setTitle("NominaGuate - Registro de Usuario");
             escenarioActual.centerOnScreen();

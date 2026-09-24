@@ -25,15 +25,6 @@ import java.util.Optional;
 
 /**
  * Controlador de la vista de registro de nuevos usuarios (RegistroView.fxml).
- *
- * Reglas:
- *  - Todos los campos son obligatorios.
- *  - La contraseña y su confirmación deben coincidir.
- *  - El nombre de usuario debe ser único (se valida antes del INSERT y también
- *    se cubre el caso de condición de carrera capturando la violación de
- *    restricción UNIQUE que devuelve MySQL).
- *  - La contraseña nunca se guarda ni se envía en texto plano: se hashea con
- *    PasswordUtil antes de construir el Usuario que se persiste.
  */
 public class RegistroController {
 
@@ -99,7 +90,7 @@ public class RegistroController {
                 return;
             }
 
-            // 5. Hash de la contraseña (nunca se persiste en texto plano)
+            // 5. Hash de la contraseña 
             String claveHasheada = PasswordUtil.hashear(clave);
 
             Usuario nuevoUsuario = new Usuario();
@@ -108,9 +99,7 @@ public class RegistroController {
             nuevoUsuario.setClaveHash(claveHasheada);
             nuevoUsuario.setRol(rolSeleccionado);
             nuevoUsuario.setActivo(true);
-            // idEmpleado queda null: cuenta administrativa (ADMIN/RRHH) no ligada a un empleado.
-            // Si tu flujo de negocio requiere ligar el registro a un Empleado existente
-            // (por ejemplo rol == EMPLEADO), asigna aquí nuevoUsuario.setIdEmpleado(idEmpleado).
+          
 
             usuarioRepository.crearUsuario(nuevoUsuario);
 
@@ -143,9 +132,7 @@ public class RegistroController {
         }
     }
 
-    // ---------------------------------------------------------------
     // Navegación
-    // ---------------------------------------------------------------
 
     private void volverALogin(ActionEvent event, long retardoMs) {
         if (retardoMs <= 0) {
@@ -173,16 +160,14 @@ public class RegistroController {
     }
 
     private void irALogin(ActionEvent event) throws IOException {
-        Parent raiz = FXMLLoader.load(getClass().getResource("/com/nominaguate/view/LoginView.fxml"));
+               Parent raiz = FXMLLoader.load(getClass().getResource("/view/LoginView.fxml"));
         Stage escenarioActual = (Stage) ((Button) event.getSource()).getScene().getWindow();
         escenarioActual.setScene(new Scene(raiz, 420, 460));
         escenarioActual.setTitle("NominaGuate - Inicio de Sesion");
         escenarioActual.centerOnScreen();
     }
 
-    // ---------------------------------------------------------------
     // Utilidades de UI
-    // ---------------------------------------------------------------
 
     private void establecerCargando(boolean cargando) {
         progresoRegistro.setVisible(cargando);

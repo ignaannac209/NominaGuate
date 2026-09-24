@@ -68,7 +68,7 @@ public class AsistenciaController {
     @FXML
     private void handleVolver(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/nominaguate/view/DashboardView.fxml"));
+                      Parent root = FXMLLoader.load(getClass().getResource("/view/DashboardView.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root, 1000, 650));
             stage.setTitle("NominaGuate - Dashboard Gerencial");

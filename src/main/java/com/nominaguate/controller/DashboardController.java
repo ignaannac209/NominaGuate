@@ -31,7 +31,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
- * Controlador de la vista de Dashboard Gerencial: KPIs, gráfico por
+ * Controlador de la vista de Dashboard Gerencial: gráfico por
  * departamento y tabla de planillas generadas.
  */
 public class DashboardController {
@@ -78,8 +78,8 @@ public class DashboardController {
     @FXML
     private void handleAbrirAsistencia(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/nominaguate/view/AsistenciaView.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                      Parent root = FXMLLoader.load(getClass().getResource("/view/AsistenciaView.fxml"));
+                      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root, 1000, 650));
             stage.setTitle("NominaGuate - Control de Asistencia");
             stage.centerOnScreen();
