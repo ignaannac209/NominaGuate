@@ -1,0 +1,166 @@
+.root {
+    -fx-font-family: "Segoe UI", "System";
+    -fx-background-color: #eef1f6;
+    -fx-font-size: 13px;
+    -fx-focus-color: #2f80ed;
+    -fx-faint-focus-color: #2f80ed22;
+}
+
+/* ---------- Tarjetas ---------- */
+.card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 14;
+    -fx-effect: dropshadow(three-pass-box, rgba(15,23,42,0.12), 18, 0, 0, 6);
+}
+
+.kpi-box {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-padding: 12 14 12 14;
+    -fx-effect: dropshadow(three-pass-box, rgba(15,23,42,0.08), 10, 0, 0, 3);
+}
+
+/* ---------- Tipografia ---------- */
+.app-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #16324f;
+}
+
+.app-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #7b8794;
+}
+
+.field-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #47546b;
+}
+
+.section-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #16324f;
+}
+
+.kpi-caption {
+    -fx-text-fill: #8a94a6;
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+}
+
+.kpi-value {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #16324f;
+}
+
+.kpi-value-accent {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1f9d55;
+}
+
+.error-label {
+    -fx-text-fill: #d64545;
+    -fx-font-size: 12px;
+}
+
+/* ---------- Campos ---------- */
+.text-field, .password-field, .combo-box {
+    -fx-background-color: #f4f6fa;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #dfe4ec;
+    -fx-border-width: 1;
+    -fx-padding: 8 10 8 10;
+    -fx-font-size: 13px;
+}
+
+.text-field:focused, .password-field:focused, .combo-box:focused {
+    -fx-border-color: #2f80ed;
+    -fx-background-color: #ffffff;
+}
+
+.combo-box .list-cell {
+    -fx-padding: 6 10 6 10;
+}
+
+/* ---------- Botones ---------- */
+.button {
+    -fx-background-radius: 8;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+    -fx-padding: 9 18 9 18;
+}
+
+.btn-primary {
+    -fx-background-color: #2f80ed;
+    -fx-text-fill: white;
+}
+.btn-primary:hover { -fx-background-color: #2569c4; }
+
+.btn-success {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+}
+.btn-success:hover { -fx-background-color: #219150; }
+
+.btn-danger {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+}
+.btn-danger:hover { -fx-background-color: #cf3a2b; }
+
+.btn-secondary {
+    -fx-background-color: #e3e8ef;
+    -fx-text-fill: #33415c;
+}
+.btn-secondary:hover { -fx-background-color: #d3dae4; }
+
+.btn-link {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2f80ed;
+    -fx-underline: true;
+    -fx-padding: 4 0 4 0;
+}
+.btn-link:hover { -fx-text-fill: #1c5fb8; }
+
+/* ---------- Tablas ---------- */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-border-color: #e3e8ef;
+    -fx-border-radius: 10;
+}
+.table-view .column-header-background {
+    -fx-background-color: #16324f;
+    -fx-background-radius: 10 10 0 0;
+}
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
+}
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+}
+.table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent #eef1f6 transparent;
+}
+.table-row-cell:odd {
+    -fx-background-color: #f8fafc;
+}
+.table-row-cell:selected {
+    -fx-background-color: #dbe9fd;
+}
+
+/* ---------- Grafico ---------- */
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+.default-color0.chart-bar {
+    -fx-bar-fill: #2f80ed;
+}

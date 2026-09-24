@@ -1,5 +1,6 @@
 package com.nominaguate;
 
+import com.nominaguate.config.DataBaseConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,22 +9,26 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        // 1. Cargar el FXML de la vista inicial (ej. Login)
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/nominaguate/view/LoginView.fxml"));
-        Parent root = loader.load();
+@Override
+public void start(Stage primaryStage) throws Exception {
+    // Apunta directamente a a la vista
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LoginView.fxml"));
+    Parent root = loader.load();
 
-        // 2. Crear UNA SOLA escena con el root cargado
-        Scene scene = new Scene(root);
-
-        // 3. Asignar y mostrar el escenario
-        primaryStage.setTitle("NominaGuate - Sistema de Nómina");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
+    Scene scene = new Scene(root);
+    primaryStage.setTitle("NominaGuate - Sistema de Nómina");
+    primaryStage.setScene(scene);
+    primaryStage.show();
+}
 
     public static void main(String[] args) {
+        try {
+            DataBaseConnection.getConnectionDataBase();
+            System.out.println("Conectado a la base de datos!");
+        } catch (Exception e) {
+            System.out.println("No se pudo conectar a la base de datos: " + e.getMessage());
+            System.out.println("La aplicación continuará; puedes iniciar sesión con el usuario de prueba admin/123.");
+        }
         launch(args);
     }
 }

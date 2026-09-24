@@ -13,41 +13,41 @@
 
 <StackPane xmlns="http://javafx.com/javafx/21"
            xmlns:fx="http://javafx.com/fxml/1"
+          stylesheets="@../css/styles.css"
            fx:controller="com.nominaguate.controller.RegistroController">
 
-    <VBox spacing="10" maxWidth="340" alignment="CENTER"
-          style="-fx-background-color: white; -fx-padding: 30; -fx-background-radius: 8;">
+    <VBox spacing="10" maxWidth="340" alignment="CENTER" styleClass="card">
         <padding>
             <Insets top="30" right="30" bottom="30" left="30"/>
         </padding>
 
-        <Label text="NominaGuate" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
-        <Label text="Crear nueva cuenta" style="-fx-text-fill: gray;"/>
+        <Label text="NominaGuate" styleClass="app-title"/>
+        <Label text="Crear nueva cuenta" styleClass="app-subtitle"/>
 
-        <Label text="Nombre completo" style="-fx-font-size: 12px;"/>
+        <Label text="Nombre completo" styleClass="field-label"/>
         <TextField fx:id="txtNombreCompleto" promptText="Nombre y apellidos"/>
 
-        <Label text="Usuario" style="-fx-font-size: 12px;"/>
+        <Label text="Usuario" styleClass="field-label"/>
         <TextField fx:id="txtUsuario" promptText="nombre.usuario"/>
 
-        <Label text="Contraseña" style="-fx-font-size: 12px;"/>
+        <Label text="Contraseña" styleClass="field-label"/>
         <PasswordField fx:id="txtPassword" promptText="Contraseña"/>
 
-        <Label text="Confirmar contraseña" style="-fx-font-size: 12px;"/>
+        <Label text="Confirmar contraseña" styleClass="field-label"/>
         <PasswordField fx:id="txtConfirmarPassword" promptText="Repite la contraseña"/>
 
-        <Label text="Rol" style="-fx-font-size: 12px;"/>
+        <Label text="Rol" styleClass="field-label"/>
         <ComboBox fx:id="cmbRol" maxWidth="Infinity" promptText="Selecciona un rol"/>
 
-        <Label fx:id="lblMensaje" style="-fx-text-fill: #c0392b;" visible="false" managed="false" wrapText="true"/>
+        <Label fx:id="lblMensaje" styleClass="error-label" visible="false" managed="false" wrapText="true"/>
 
         <ProgressIndicator fx:id="progresoRegistro" visible="false" prefWidth="24" prefHeight="24"/>
 
         <HBox spacing="10" alignment="CENTER">
             <Button fx:id="btnRegistrar" text="Registrar" onAction="#handleRegistrar"
-                    maxWidth="Infinity" defaultButton="true" HBox.hgrow="ALWAYS"/>
+                    maxWidth="Infinity" defaultButton="true" HBox.hgrow="ALWAYS" styleClass="btn-primary"/>
             <Button fx:id="btnCancelar" text="Cancelar" onAction="#handleCancelar"
-                    maxWidth="Infinity" cancelButton="true" HBox.hgrow="ALWAYS"/>
+                    maxWidth="Infinity" cancelButton="true" HBox.hgrow="ALWAYS" styleClass="btn-secondary"/>
         </HBox>
     </VBox>
 
