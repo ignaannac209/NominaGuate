@@ -15,8 +15,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 
-<BorderPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nominaguate.controller.DashboardController">
+<BorderPane xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nominaguate.controller.DashboardController">
 
     <top>
         <VBox spacing="12">
@@ -81,7 +84,7 @@
 
             <TableView fx:id="tblPlanillas" VBox.vgrow="ALWAYS">
                 <columns>
-                    <TableColumn fx:id="colIdPlanilla" prefWidth="60" text="ID" />
+                    <TableColumn fx:id="colIdDepto" prefWidth="60" text="ID" />
                     <TableColumn fx:id="colPeriodo" prefWidth="160" text="Periodo" />
                     <TableColumn fx:id="colFecha" prefWidth="140" text="Fecha generación" />
                     <TableColumn fx:id="colEstado" prefWidth="100" text="Estado" />

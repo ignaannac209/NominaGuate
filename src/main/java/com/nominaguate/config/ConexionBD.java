@@ -9,10 +9,9 @@ import java.sql.SQLException;
  */
 public final class ConexionBD {
 
-    private static final String URL =
-            "jdbc:mysql://localhost:3306/db_rrhh_nomina?useSSL=false&serverTimezone=UTC";
+    private static final String URL = "jdbc:mysql://localhost:3306/db_rrhh_nomina";
     private static final String USUARIO = "root";
-    private static final String CLAVE = "$DmynM4A";
+    private static final String CLAVE = "MiSQL2026";
 
     private ConexionBD() {
     }

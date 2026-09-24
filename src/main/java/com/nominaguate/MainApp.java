@@ -11,8 +11,8 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // 1. Cargar el FXML de la vista inicial (ej. Login)
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/nominaguate/view/LoginView.fxml"));
-        Parent root = loader.load();
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/nominaguate/view/LoginView.fxml"));
+      Parent root = loader.load();
 
         // 2. Crear UNA SOLA escena con el root cargado
         Scene scene = new Scene(root);
