@@ -8,6 +8,7 @@ import com.nominaguate.model.PlanillaDetalle;
 import com.nominaguate.repository.PlanillaRepository;
 import com.nominaguate.service.PlanillaService;
 import com.nominaguate.service.ResumenAsistenciaEmpleado;
+import com.nominaguate.repository.EmpleadoRepository;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,6 +25,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -42,7 +44,8 @@ public class PlanillaController {
     @FXML private Button btnProcesar;
     @FXML private ProgressIndicator progresoCalculo;
 
-    private final PlanillaService planillaService;
+       private final PlanillaService planillaService;
+    private final EmpleadoRepository empleadoRepository = new EmpleadoRepository();
 
     // Cargados desde los módulos de Empleados y Asistencia antes de procesar
     private List<Empleado> empleadosActivos;
@@ -76,7 +79,8 @@ public class PlanillaController {
         }
     }
 
-    // Se dispara al elegir un periodo en el ComboBox
+  
+     // Se dispara al elegir un periodo en el ComboBox
     @FXML
     private void onSeleccionarPeriodo(ActionEvent event) {
         PeriodoPlanilla periodo = cmbPeriodo.getValue();
@@ -84,9 +88,14 @@ public class PlanillaController {
 
         tblDetalle.getItems().clear();
         lblTotalNeto.setText("Q 0.00");
-        // Aquí se cargan empleadosActivos y resumenAsistencia desde sus módulos
-    }
 
+        try {
+            empleadosActivos = empleadoRepository.listarActivos();
+            resumenAsistencia = new HashMap<>(); // sin asistencia registrada aún: se calcula con 0 días/horas por defecto
+        } catch (SQLException e) {
+            mostrarError("No se pudieron cargar los empleados activos", e);
+        }
+    }
     // Botón "Procesar Planilla"
     @FXML
     private void onProcesarPlanilla(ActionEvent event) {
