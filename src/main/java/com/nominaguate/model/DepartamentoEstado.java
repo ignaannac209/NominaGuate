@@ -8,6 +8,8 @@ package com.nominaguate.model;
  *
  * @author Alejandro Marroquin
  */
-public class DepartamentoPuesto {
-    
+public enum DepartamentoEstado {
+     ACTIVO,
+    INACTIVO
 }
+

@@ -47,20 +47,21 @@
                               <Label text="Nombre de departamento" GridPane.rowIndex="1" />
                               <TextField fx:id="txtNombreDepto" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Label prefHeight="17.0" prefWidth="59.0" text="Estado" GridPane.rowIndex="2" />
-                              <ComboBox editable="true" prefHeight="25.0" prefWidth="221.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <ComboBox editable="true" prefHeight="25.0" prefWidth="221.0" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="cmbEstado"/>
                            </children>
                         </GridPane>
                         <HBox alignment="CENTER" spacing="10.0">
                            <children>
-                              <Button fx:id="btnAgregarDepto" mnemonicParsing="false" text="Agregar" />
-                              <Button fx:id="btnModificarDepto" mnemonicParsing="false" text="Modificar" />
-                              <Button fx:id="btnEliminarDepto" mnemonicParsing="false" text="Eliminar" />
+                              <Button fx:id="btnAgregarDepto" mnemonicParsing="false" text="Agregar" onAction="#onAgregar"/>
+                              <Button fx:id="btnModificarDepto" mnemonicParsing="false" text="Modificar" onAction="#onModificar" />
+                              <Button fx:id="btnEliminarDepto" mnemonicParsing="false" text="Eliminar" onAction="#onEliminar" />
                            </children>
                         </HBox>
                         <TableView fx:id="tblDepartamentos" prefHeight="280.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                           <columns>
                             <TableColumn fx:id="colIdDepto" prefWidth="100.0" text="ID" />
                             <TableColumn fx:id="colNombreDepto" prefWidth="300.0" text="Nombre" />
+                            <TableColumn fx:id="colEstado" prefWidth="100.0" text="Estado" />  
                           </columns>
                         </TableView>
                      </children>
